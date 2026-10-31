@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://rp5fp5wbmgby"]
+
+[resource]
+emission_enabled = true
+emission = Color(0.449525, 0.50945, 0.899999, 1)
+disable_receive_shadows = true

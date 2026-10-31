@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ckrjf6vvx0ged"
+path="res://.godot/imported/Kugel.obj-ef4b050a9632fa9d42e932cb818730eb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Kugel.obj-ef4b050a9632fa9d42e932cb818730eb.mesh"]
+
+source_file="res://Models/Kugel.obj"
+dest_files=["res://.godot/imported/Kugel.obj-ef4b050a9632fa9d42e932cb818730eb.mesh", "res://.godot/imported/Kugel.obj-ef4b050a9632fa9d42e932cb818730eb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

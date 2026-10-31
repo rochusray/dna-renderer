@@ -1,0 +1,18 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhis0fsor5557"]
+
+[ext_resource type="Script" path="res://Scripts/LineRenderer.cs" id="1_s85cm"]
+[ext_resource type="Material" uid="uid://rp5fp5wbmgby" path="res://Materials/Line.tres" id="2_uunp0"]
+[ext_resource type="ArrayMesh" uid="uid://ckrjf6vvx0ged" path="res://Models/Kugel.obj" id="3_43an5"]
+[ext_resource type="Script" path="res://Scripts/LOD.cs" id="3_h0y0g"]
+[ext_resource type="ArrayMesh" uid="uid://dfyx24ohv5r4k" path="res://Models/Kugel2.obj" id="5_cpywt"]
+[ext_resource type="ArrayMesh" uid="uid://chmq8ho6nsutm" path="res://Models/Kugel3.obj" id="6_l1b02"]
+
+[node name="ZLine" type="Node3D"]
+script = ExtResource("1_s85cm")
+
+[node name="Kugel" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = ExtResource("2_uunp0")
+script = ExtResource("3_h0y0g")
+Meshes = Array[Mesh]([ExtResource("3_43an5"), ExtResource("5_cpywt"), ExtResource("6_l1b02")])
+Distances = PackedFloat32Array(2, 6)

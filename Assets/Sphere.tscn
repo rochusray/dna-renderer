@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc6non1tis7pe"]
+
+[ext_resource type="Script" path="res://Scripts/RotateToCamera.cs" id="1_g8d60"]
+[ext_resource type="Script" path="res://Scripts/LOD.cs" id="2_6xqei"]
+[ext_resource type="ArrayMesh" uid="uid://ckrjf6vvx0ged" path="res://Models/Kugel.obj" id="2_gakd2"]
+[ext_resource type="ArrayMesh" uid="uid://dfyx24ohv5r4k" path="res://Models/Kugel2.obj" id="4_ocj7u"]
+[ext_resource type="ArrayMesh" uid="uid://chmq8ho6nsutm" path="res://Models/Kugel3.obj" id="5_cdl75"]
+
+[node name="Sphere" type="Node3D"]
+script = ExtResource("1_g8d60")
+
+[node name="Kugel" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.605, 0, 0, 0, -2.64454e-08, 0.605, 0, -0.605, -2.64454e-08, 0, 0, 0)
+skeleton = NodePath("../..")
+script = ExtResource("2_6xqei")
+Meshes = Array[Mesh]([ExtResource("2_gakd2"), ExtResource("4_ocj7u"), ExtResource("5_cdl75")])
+Distances = PackedFloat32Array(15, 40)

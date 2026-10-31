@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2g2bbjgtv2an"
+path="res://.godot/imported/Zylinder2.obj-91babe58c9106361cc7d8e65cb1101ab.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Zylinder2.obj-91babe58c9106361cc7d8e65cb1101ab.mesh"]
+
+source_file="res://Models/Zylinder2.obj"
+dest_files=["res://.godot/imported/Zylinder2.obj-91babe58c9106361cc7d8e65cb1101ab.mesh", "res://.godot/imported/Zylinder2.obj-91babe58c9106361cc7d8e65cb1101ab.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

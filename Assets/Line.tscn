@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5nftc2a8i3fl"]
+
+[ext_resource type="Script" path="res://Scripts/LineRenderer.cs" id="1_16x7u"]
+[ext_resource type="Material" uid="uid://rp5fp5wbmgby" path="res://Materials/Line.tres" id="2_3xb3m"]
+[ext_resource type="ArrayMesh" uid="uid://v2kghk2stm1x" path="res://Models/Zylinder.obj" id="2_rhfqo"]
+[ext_resource type="Script" path="res://Scripts/LOD.cs" id="3_gyaeb"]
+[ext_resource type="ArrayMesh" uid="uid://b2g2bbjgtv2an" path="res://Models/Zylinder2.obj" id="5_pgjje"]
+
+[node name="Line" type="Node3D"]
+script = ExtResource("1_16x7u")
+
+[node name="Zylinder" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.333, 0, 0, 0, 0.333, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("2_3xb3m")
+skeleton = NodePath("../..")
+script = ExtResource("3_gyaeb")
+Meshes = Array[Mesh]([ExtResource("2_rhfqo"), ExtResource("5_pgjje")])
+Distances = PackedFloat32Array(10)

@@ -1,0 +1,5 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://vyivkvwucurv"]
+
+[resource]
+albedo_color = Color(0.317161, 0.347016, 0.995354, 1)
+disable_receive_shadows = true

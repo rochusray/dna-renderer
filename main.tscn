@@ -1,0 +1,529 @@
+[gd_scene load_steps=30 format=3 uid="uid://l5unvxi88xpm"]
+
+[ext_resource type="Script" path="res://Scripts/CameraController.cs" id="1_8ohsh"]
+[ext_resource type="Script" path="res://Scripts/AssetManager.cs" id="5_rtn88"]
+[ext_resource type="Material" uid="uid://dpjntyd7eym33" path="res://Materials/H.tres" id="6_6d3tn"]
+[ext_resource type="PackedScene" uid="uid://dc6non1tis7pe" path="res://Assets/Sphere.tscn" id="6_phnw8"]
+[ext_resource type="Material" uid="uid://bhf0h3aafqljt" path="res://Materials/O.tres" id="7_epq5x"]
+[ext_resource type="PackedScene" uid="uid://b5nftc2a8i3fl" path="res://Assets/Line.tscn" id="7_xpkdc"]
+[ext_resource type="Material" uid="uid://d23hfn0f3ppuq" path="res://Materials/C.tres" id="8_kconm"]
+[ext_resource type="PackedScene" uid="uid://b5bd0e61gg6lu" path="res://Assets/DoubleLine.tscn" id="8_mcxac"]
+[ext_resource type="PackedScene" uid="uid://bhis0fsor5557" path="res://Assets/ZLine.tscn" id="9_4w5ai"]
+[ext_resource type="Material" uid="uid://cg7qu0m6lfu2x" path="res://Materials/P.tres" id="9_6whwj"]
+[ext_resource type="Material" uid="uid://vyivkvwucurv" path="res://Materials/N.tres" id="10_6kd15"]
+[ext_resource type="Script" path="res://Scripts/CameraBackend.cs" id="12_2usmp"]
+[ext_resource type="PackedScene" uid="uid://3m8ng28hvmqj" path="res://Assets/TextLabel.tscn" id="15_x2nqq"]
+[ext_resource type="Script" path="res://Scripts/DnaBuilder.cs" id="16_fwckw"]
+[ext_resource type="Script" path="res://Scripts/FollowCameraY.cs" id="17_bqv2o"]
+[ext_resource type="Material" uid="uid://br3yhw8qss0r4" path="res://Materials/Trails.tres" id="17_f3wo8"]
+[ext_resource type="PackedScene" uid="uid://kn5adrju7gx4" path="res://Assets/Empty.tscn" id="17_hdv4n"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2kd7g"]
+
+[sub_resource type="Sky" id="Sky_7fuu3"]
+sky_material = SubResource("ProceduralSkyMaterial_2kd7g")
+
+[sub_resource type="Environment" id="Environment_kjut4"]
+background_mode = 1
+background_color = Color(0.374, 0.556467, 0.85, 1)
+sky = SubResource("Sky_7fuu3")
+tonemap_exposure = 0.8
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.372549, 0.556863, 0.85098, 1)
+fog_density = 1.0
+fog_depth_curve = 6.0
+fog_depth_begin = 50.0
+fog_depth_end = 250.0
+volumetric_fog_density = 1.0
+
+[sub_resource type="Curve" id="Curve_dlcdd"]
+_data = [Vector2(0.0289855, 0), 0.0, 0.0, 0, 0, Vector2(0.202899, 1), 0.0, 0.0, 0, 0, Vector2(0.536232, 0), 0.0, 0.0, 0, 0, Vector2(0.73913, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_03j4w"]
+curve = SubResource("Curve_dlcdd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dyw12"]
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(40, 100, 40)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+velocity_pivot = Vector3(0, 1, 0)
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = -3.0
+initial_velocity_max = 3.0
+angular_velocity_min = -1.60933e-05
+angular_velocity_max = -1.60933e-05
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_03j4w")
+turbulence_enabled = true
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.05
+
+[sub_resource type="Curve" id="Curve_n5qdx"]
+_data = [Vector2(0, 0), 0.0, 8.64011, 0, 0, Vector2(0.323529, 1), -0.0263116, -0.0263116, 0, 0, Vector2(1, 0), -0.934066, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_gcxdc"]
+material = ExtResource("17_f3wo8")
+shape = 0
+sections = 25
+section_segments = 5
+curve = SubResource("Curve_n5qdx")
+
+[sub_resource type="Gradient" id="Gradient_whlrh"]
+offsets = PackedFloat32Array(0.38961, 1)
+colors = PackedColorArray(0.372549, 0.556863, 0.85098, 0, 0.372549, 0.556863, 0.85098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_40ap3"]
+gradient = SubResource("Gradient_whlrh")
+width = 1080
+height = 1080
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_mmh8h"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(0.372549, 0.556863, 0.85098, 1, 0.372549, 0.556863, 0.85098, 0, 0.372549, 0.556863, 0.85098, 0, 0.372549, 0.556863, 0.85098, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ihi84"]
+gradient = SubResource("Gradient_mmh8h")
+width = 1
+height = 1080
+fill_to = Vector2(0, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("5_rtn88")
+sphere = ExtResource("6_phnw8")
+line = ExtResource("7_xpkdc")
+doubleLine = ExtResource("8_mcxac")
+zLine = ExtResource("9_4w5ai")
+textOverlay = ExtResource("15_x2nqq")
+empty = ExtResource("17_hdv4n")
+h = ExtResource("6_6d3tn")
+o = ExtResource("7_epq5x")
+c = ExtResource("8_kconm")
+p = ExtResource("9_6whwj")
+n = ExtResource("10_6kd15")
+Molecules = "###
+Name;A
+#;Adenin;-2.9942;-0.0738;-0.3594;9.815;1.8642;8.861
+=;23;26
+-;23;25
+=;25;28
+-;27;28
+-;24;26
+=;24;27
+N;-0.276;-0.0119;2.9328
+H;1.6177;-0.0738;3.5343
+-;7;8
+-;7;27
+H;-1.767;-0.0738;4.0651
+-;7;11
+N;-5.924;-0.012;-1.804
+C;-7.1343;-0.012;-0.1235
+N;-5.6072;-0.012;1.3648
+=;14;15
+-;13;14
+-;13;25
+-;15;28
+/;13;62
+~;24;41
+~;8;42
+N;-2.4992;-0.012;-2.8721
+N;0.4024;-0.0119;0.0655
+C;-3.911;-0.012;-1.4707
+C;-0.3035;-0.0119;-2.0278
+C;-1.6468;-0.0119;1.2366
+C;-3.6118;-0.012;0.6142
+/;49;63
+-;41;48
+=;42;44
+=;45;47
+-;40;43
+-;39;40
+-;38;40
+-;37;40
+H;6.9972;-0.2301;6.8009
+H;9.4153;-1.2634;6.2475
+H;9.0097;1.4985;6.248
+C;8.1453;-0.0738;5.7327
+H;2.4631;-0.0738;0.384
+O;3.8277;-0.0738;3.9823
+C;7.4029;-0.0738;3.3756
+C;5.4071;-0.0738;2.8603
+C;6.0011;-0.0738;-0.6194
+C;8.7629;-0.0738;1.7673
+O;5.541;-0.0738;-2.5477
+N;4.4023;-0.0738;0.9795
+N;8.3101;-0.0738;-0.1697
+-;45;49
+-;46;49
+=;43;46
+-;43;44
+-;45;48
+-;44;48
+H;10.5512;-0.0738;2.2367
+-;46;56
+H;1.367;-0.0738;-2.7447
+-;26;58
+H;-8.9638;-0.0738;0.1043
+-;14;60
+V;-6.6548;-0.0619;-3.8693
+V;10.2154;-0.0619;-1.2945
+#;Thymin;7.0417;-0.0738;1.5561;8.1621;1.8642;10.07
+###
+Name;B
+/;10;60
+-;29;53
+=;14;15
+=;13;17
+-;10;11
+-;10;14
+-;12;13
+=;11;12
+-;13;16
+-;14;17
+N;-5.4076;-0.0619;-2.2771
+C;-6.3922;-0.0619;-0.1423
+C;-5.3853;-0.0619;1.7506
+C;-3.3132;-0.0619;1.67
+C;-3.3535;-0.0619;-2.1427
+O;-2.0525;0;-3.7725
+N;-1.6932;-0.0619;3.2947
+N;-1.8722;-0.0619;-0.2499
+-;16;19
+H;-0.1854;0;3.2759
+~;15;28
+~;17;27
+~;19;26
+=;26;50
+-;27;51
+-;28;53
+O;1.8282;0;3.0092
+H;0.1546;0;-0.1652
+H;-0.2456;0;-3.8012
+H;2.683;0;-4.8785
+-;52;53
+=;49;52
+-;48;49
+-;51;52
+-;50;51
+-;47;50
+=;47;48
+-;44;47
+=;44;45
+-;46;48
+-;45;46
+-;43;45
+/;46;61
+H;10.6651;0;3.454
+N;7.3537;-0.0619;3.4612
+C;9.2799;-0.0619;2.2898
+N;8.8737;-0.0619;0.1305
+C;5.6219;-0.0619;1.8555
+C;6.6074;-0.0619;-0.2391
+N;5.4662;-0.0619;-2.3316
+C;3.5105;-0.0619;1.6952
+N;1.9982;-0.0619;-0.1464
+C;3.397;-0.0619;-2.2769
+N;1.4363;-0.0619;-3.6124
+H;-2.6557;0;4.947
+-;16;54
+-;11;57
+H;-8.1961;0;-0.1372
+-;12;59
+H;-6.5196;0;3.1256
+V;-6.6548;-0.0619;-3.8693
+V;10.2154;-0.0619;-1.2945
+#;Cytosin;-4.0033;0;-0.2184;6.5942;2.0264;8.8063
+#;Guanin;5.4179;0;-0.1942;9.5785;2.0264;9.0803
+###
+Name;C
+#;Adenin;5.7346;0;0.6257;9.815;1.8642;7.9911
+=;23;26
+-;23;25
+=;25;28
+-;27;28
+-;24;26
+=;24;27
+N;2.0172;-0.0619;3.1677
+H;0.0304;0;3.1775
+-;7;8
+-;7;27
+H;3.103;0;4.6929
+-;7;11
+N;8.8203;-0.0619;0.3294
+C;9.4748;-0.0619;2.2942
+N;7.5735;-0.0619;3.2597
+=;14;15
+-;13;14
+-;13;25
+-;15;28
+/;13;63
+~;24;41
+~;8;42
+N;5.8694;-0.0619;-1.7109
+N;2.2242;-0.0619;0.2285
+C;6.7994;-0.0619;0.0476
+C;3.5218;-0.0619;-1.5593
+C;3.8312;-0.0619;1.9571
+C;5.8924;-0.0619;1.9486
+/;49;62
+-;41;48
+=;42;44
+=;45;47
+-;40;43
+-;39;40
+-;38;40
+-;37;40
+H;-6.0782;0.1562;4.6924
+H;-8.2215;1.1896;3.4435
+H;-7.8346;-1.5724;3.5649
+C;-6.8559;0;3.3306
+H;0.1622;0;-0.0816
+O;-2.2128;0;2.9465
+C;-5.4447;0;1.3019
+C;-3.386;0;1.4047
+C;-2.9159;0;-2.0938
+C;-6.2636;0;-0.6386
+O;-1.9021;0;-3.7974
+N;-1.8663;0;-0.0911
+N;-5.2541;0;-2.3527
+-;45;49
+-;46;49
+=;43;46
+-;43;44
+-;45;48
+-;44;48
+H;-8.1105;0;-0.7236
+-;46;56
+H;2.141;0;-2.7415
+-;26;58
+H;11.1532;0;3.057
+-;14;60
+V;-6.6548;-0.0619;-3.8693
+V;10.2154;-0.0619;-1.2945
+#;Thymin;-4.3163;0;-0.1251;6.8449;1.8642;9.6647
+###
+Name;D
+/;10;61
+-;29;53
+=;14;15
+=;13;17
+-;10;11
+-;10;14
+-;12;13
+=;11;12
+-;13;16
+-;14;17
+N;8.5291;0.012;0.06
+C;8.8444;0.012;2.3896
+C;7.3267;0.012;3.904
+C;5.3694;0.012;3.2194
+C;6.5259;0.012;-0.4139
+O;5.76;-0.0499;-2.3536
+N;3.3441;0.012;4.2975
+N;4.5547;0.012;0.9613
+-;16;19
+H;1.9081;-0.0499;3.8374
+~;15;28
+~;17;27
+~;19;26
+=;26;50
+-;27;51
+-;28;53
+O;0.0613;-0.0499;2.992
+H;2.5921;-0.0499;0.4479
+H;4.041;-0.0499;-2.9109
+H;1.557;-0.0499;-4.7996
+-;52;53
+=;49;52
+-;48;49
+-;51;52
+-;50;51
+-;47;50
+=;47;48
+-;44;47
+=;44;45
+-;46;48
+-;45;46
+-;43;45
+/;46;60
+H;-8.5176;-0.0499;0.826
+N;-5.3539;0.012;1.8038
+C;-6.8519;0.012;0.1191
+N;-5.8304;0.012;-1.8262
+C;-3.2273;0.012;0.7766
+C;-3.5553;0.012;-1.5149
+N;-1.8507;0.012;-3.1808
+C;-1.1618;0.012;1.2424
+N;0.824;0.012;-0.0747
+C;0.1116;0.012;-2.5218
+N;2.3777;0.012;-3.2236
+H;3.7798;-0.0499;6.1595
+-;16;54
+-;11;57
+H;10.5675;-0.0499;2.9234
+-;12;59
+H;8.0079;-0.0499;5.5512
+V;-6.6548;-0.0619;-3.8693
+V;10.2154;-0.0619;-1.2945
+#;Cytosin;6.8008;-0.0499;1.1561;8.1602;2.0264;10.0198
+#;Guanin;-2.7461;-0.0499;-0.3967;10.8106;2.0264;9.3018
+###
+Name;Edge
+-;1;8
+H;-10.1973;-2.3037;-6.1779
+H;-9.9133;-3.2992;-2.6902
+-;2;9
+-;5;9
+H;-12.3873;-3.1035;-3.2569
+O;-13.166;-2.5539;-0.5777
+C;-9.703;0.416;-5.2247
+C;-9.5563;-1.9335;-4.8582
+C;-10.8459;-2.0775;-3.1651
+-;8;9
+O;-11.3886;-0.3003;-2.2308
+P;-13.2546;-0.3003;-0.8386
+O;-15.0917;-0.3003;-2.2308
+O;-13.0746;-0.3003;1.248
+-;12;14
+-;11;12
+-;6;12
+-;9;11
+H;-5.5161;0;-5.0881
+-;19;61
+O;10.7094;1.6848;-1.7037
+C;11.8427;-1.2565;-0.9884
+C;13.1156;0.1274;-1.9067
+C;12.5655;2.071;-1.7494
+C;13.3818;1.4664;0.0781
+H;9.3106;-0.6631;-2.5143
+H;12.8069;3.2565;-2.8849
+H;14.5985;0.3896;-1.3222
+H;11.9078;-2.5457;-1.7412
+H;12.1612;2.1394;0.6526
+H;12.1012;-1.4017;0.5467
+H;14.8085;2.2003;0.4432
+O;13.1656;0.2955;1.7684
+P;14.627;0;3.0902
+O;16.5169;0.2955;2.3485
+O;14.2451;-0.8925;5.0231
+O;14.1577;1.6527;3.8506
+-;26;62
+-;21;62
+-;24;27
+-;23;24
+-;21;24
+-;22;23
+-;22;62
+-;22;29
+-;23;28
+-;24;25
+-;25;32
+-;25;30
+-;25;33
+-;33;34
+-;34;35
+=;34;36
+/;37;77
+-;34;37
+-;22;31
+-;8;58
+H;-8.4362;-2.2383;-5.7956
+-;7;60
+H;-9.6655;1.9203;-4.9256
+C;-6.6548;-0.0619;-3.8693
+C;10.2154;-0.0619;-1.2945
+=;12;13
+/;7;76
+C;-7.9458;1.6066;-4.6108
+O;-7.7156;-1.7762;-4.2166
+-;7;65
+-;61;65
+-;61;66
+-;8;66
+-;7;8
+-;65;73
+H;-8.3343;2.7178;-3.5322
+-;65;75
+H;-7.5018;2.671;-5.6489
+V;-11.5803;0.7961;-6.2909
+V;12.6241;3.4774;4.0357
+#;Desoxyribose;-8.1344;-0.1094;-4.5572;5.2993;5.0238;2.8975
+#;Desoxyribose;11.7349;0.5118;-1.4266;4.8593;4.8778;2.3786
+#;Phosphat;-13.2977;-1.2195;-0.5711;4.968;3.8894;4.6738
+#;Phosphat;14.8678;0.369;3.4047;4.7248;3.8894;4.6738
+"
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_8ohsh")
+IsMobile = true
+Speed = Vector2(-5, 180)
+MSpeed = Vector2(-5, 180)
+MaxSpeed = Vector2(30, 20)
+MaxZoom = 2.0
+MinZoom = 0.2
+ZoomSpeed = 500.0
+MZoomSpeed = 1000.0
+Drag = Vector2(2, 5)
+ZoomDrag = 5.0
+SpeedZoomFactor = 0.8
+DefaultRotation = -0.02
+TiltSpeed = 60.0
+MaxTilt = 35.0
+TiltDrag = 4.0
+TiltToZeroSpeed = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 100)
+environment = SubResource("Environment_kjut4")
+current = true
+fov = 50.0
+script = ExtResource("12_2usmp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D2/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.4612)
+
+[node name="Node3D5" type="Node3D" parent="."]
+script = ExtResource("16_fwckw")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.7538, 0)
+material_override = ExtResource("17_f3wo8")
+cast_shadow = 0
+amount = 200
+lifetime = 10.0
+transform_align = 1
+trail_enabled = true
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_dyw12")
+draw_passes = 2
+draw_pass_1 = SubResource("RibbonTrailMesh_gcxdc")
+draw_pass_2 = null
+script = ExtResource("17_bqv2o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_40ap3")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ihi84")
+expand_mode = 1
